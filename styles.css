@@ -1139,6 +1139,38 @@ html {
     transition-delay: 0.3s;
 }
 
+/* --- Demo Section --- */
+.demo-section {
+    background: var(--bg-secondary);
+}
+
+.demo-video-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #181726;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.65), 0 0 100px rgba(20, 50, 160, 0.15);
+    position: relative;
+    padding: 3px;
+    transition: var(--transition-smooth);
+}
+
+.demo-video-wrapper:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.75), 0 0 100px rgba(20, 50, 160, 0.25);
+}
+
+.demo-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 13px;
+    object-fit: cover;
+}
+
 /* --- Responsive Layout Breakpoints --- */
 
 @media (max-width: 1024px) {
@@ -1282,7 +1314,7 @@ html {
 /* --- Horizontal Scroll Layout (Desktop & Tablet) --- */
 @media (min-width: 769px) {
     main {
-        height: 580vh; /* Hero (100) + Preview (100) + Features (100) + Security (100) + Install (100) + Footer (80) = 580vh scrollable height */
+        height: 680vh; /* Hero (100) + Preview (100) + Demo (100) + Features (100) + Security (100) + Install (100) + Footer (80) = 680vh scrollable height */
         position: relative;
     }
     
