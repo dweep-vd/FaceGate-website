@@ -1141,11 +1141,11 @@ html {
 
 /* --- Demo Section --- */
 .demo-section {
-    background: var(--bg-secondary);
+    background: transparent;
 }
 
 .demo-video-wrapper {
-    width: 100%;
+    width: fit-content;
     max-width: 900px;
     margin: 0 auto;
     background: #181726;
@@ -1156,6 +1156,7 @@ html {
     position: relative;
     padding: 3px;
     transition: var(--transition-smooth);
+    display: flex;
 }
 
 .demo-video-wrapper:hover {
@@ -1164,11 +1165,10 @@ html {
 }
 
 .demo-video {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
     border-radius: 13px;
-    object-fit: cover;
 }
 
 /* --- Responsive Layout Breakpoints --- */
@@ -1384,6 +1384,37 @@ html {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .demo-section {
+        padding-top: 100px !important;
+        box-sizing: border-box;
+    }
+
+    .demo-section .container {
+        max-height: 90vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .demo-section .section-header {
+        margin-bottom: 24px;
+    }
+
+    .demo-video-wrapper {
+        max-height: calc(85vh - 180px);
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .demo-video {
+        max-height: calc(85vh - 186px); /* subtract wrapper padding */
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
     }
     
     /* Features Horizontal timeline slide */
