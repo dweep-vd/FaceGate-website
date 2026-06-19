@@ -76,7 +76,7 @@ function initScreenshotsShowcase() {
             if (window.innerWidth <= 768) {
                 activeShowcaseIndex = index;
                 updateActiveShowcaseInfo(index);
-                targetCarouselRotation = -index * 48;
+                targetCarouselRotation = -index * 38;
             }
         });
         
@@ -105,7 +105,7 @@ function initScreenshotsShowcase() {
                 if (activeShowcaseIndex > 0) {
                     activeShowcaseIndex--;
                     updateActiveShowcaseInfo(activeShowcaseIndex);
-                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                    targetCarouselRotation = -activeShowcaseIndex * 38;
                 }
             });
             showcaseContainer.appendChild(prevBtn);
@@ -121,7 +121,7 @@ function initScreenshotsShowcase() {
                 if (activeShowcaseIndex < screenshots.length - 1) {
                     activeShowcaseIndex++;
                     updateActiveShowcaseInfo(activeShowcaseIndex);
-                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                    targetCarouselRotation = -activeShowcaseIndex * 38;
                 }
             });
             showcaseContainer.appendChild(nextBtn);
@@ -134,7 +134,7 @@ function initScreenshotsShowcase() {
             dot.addEventListener('click', () => {
                 activeShowcaseIndex = index;
                 updateActiveShowcaseInfo(index);
-                targetCarouselRotation = -index * 48;
+                targetCarouselRotation = -index * 38;
             });
             dotsContainer.appendChild(dot);
         });
@@ -156,13 +156,13 @@ function initScreenshotsShowcase() {
                 if (activeShowcaseIndex < screenshots.length - 1) {
                     activeShowcaseIndex++;
                     updateActiveShowcaseInfo(activeShowcaseIndex);
-                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                    targetCarouselRotation = -activeShowcaseIndex * 38;
                 }
             } else if (touchEndX - touchStartX > threshold) {
                 if (activeShowcaseIndex > 0) {
                     activeShowcaseIndex--;
                     updateActiveShowcaseInfo(activeShowcaseIndex);
-                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                    targetCarouselRotation = -activeShowcaseIndex * 38;
                 }
             }
         }, { passive: true });
@@ -227,7 +227,7 @@ function updateWheelTransforms(rotationAngle) {
     
     // Circle math parameters (virtual rotation center below the screen) for desktop
     const radius = 800; 
-    const angleStep = 48; // angle spacing between cards
+    const angleStep = 38; // angle spacing between cards
     
     cards.forEach((card, idx) => {
         const itemAngle = (idx * angleStep) + rotationAngle;
@@ -240,7 +240,7 @@ function updateWheelTransforms(rotationAngle) {
         
         // Active visual scaling & blur formulas based on deviation from top-center (0 degrees)
         const diff = Math.abs(itemAngle);
-        const focusFactor = Math.max(0, 1 - (diff / 48));
+        const focusFactor = Math.max(0, 1 - (diff / 38));
         
         const scale = 0.75 + (focusFactor * 0.25);
         const opacity = 0.15 + (focusFactor * 0.85);
@@ -296,7 +296,7 @@ function initHorizontalScroll() {
             const pinProgressDuration = 0.15;
             const pinProgressEnd = pinProgressStart + pinProgressDuration;
             
-            const angleStep = 48;
+            const angleStep = 38;
             const totalRotationSpan = (screenshots.length - 1) * angleStep;
             
             if (progress >= pinProgressStart && progress <= pinProgressEnd) {
