@@ -70,8 +70,103 @@ function initScreenshotsShowcase() {
         img.loading = 'lazy';
         
         card.appendChild(img);
+        
+        // Let cards be clickable on mobile to focus them directly
+        card.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                activeShowcaseIndex = index;
+                updateActiveShowcaseInfo(index);
+                targetCarouselRotation = -index * 48;
+            }
+        });
+        
         wheel.appendChild(card);
     });
+    
+    // Generate navigation dots & swipe listeners for mobile viewports
+    const showcaseContainer = document.querySelector('.screenshots-showcase-container');
+    if (showcaseContainer) {
+        let dotsContainer = showcaseContainer.querySelector('.carousel-dots');
+        if (!dotsContainer) {
+            dotsContainer = document.createElement('div');
+            dotsContainer.className = 'carousel-dots';
+            showcaseContainer.appendChild(dotsContainer);
+        }
+        dotsContainer.innerHTML = '';
+        
+        // Add manual navigation arrows
+        let prevBtn = showcaseContainer.querySelector('.carousel-nav-btn.prev');
+        if (!prevBtn) {
+            prevBtn = document.createElement('button');
+            prevBtn.className = 'carousel-nav-btn prev';
+            prevBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>`;
+            prevBtn.setAttribute('aria-label', 'Previous screenshot');
+            prevBtn.addEventListener('click', () => {
+                if (activeShowcaseIndex > 0) {
+                    activeShowcaseIndex--;
+                    updateActiveShowcaseInfo(activeShowcaseIndex);
+                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                }
+            });
+            showcaseContainer.appendChild(prevBtn);
+        }
+        
+        let nextBtn = showcaseContainer.querySelector('.carousel-nav-btn.next');
+        if (!nextBtn) {
+            nextBtn = document.createElement('button');
+            nextBtn.className = 'carousel-nav-btn next';
+            nextBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`;
+            nextBtn.setAttribute('aria-label', 'Next screenshot');
+            nextBtn.addEventListener('click', () => {
+                if (activeShowcaseIndex < screenshots.length - 1) {
+                    activeShowcaseIndex++;
+                    updateActiveShowcaseInfo(activeShowcaseIndex);
+                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                }
+            });
+            showcaseContainer.appendChild(nextBtn);
+        }
+
+        screenshots.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+            dot.addEventListener('click', () => {
+                activeShowcaseIndex = index;
+                updateActiveShowcaseInfo(index);
+                targetCarouselRotation = -index * 48;
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // Swipe gestures
+    const viewport = document.querySelector('.carousel-viewport');
+    if (viewport) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        viewport.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        viewport.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const threshold = 50;
+            if (touchStartX - touchEndX > threshold) {
+                if (activeShowcaseIndex < screenshots.length - 1) {
+                    activeShowcaseIndex++;
+                    updateActiveShowcaseInfo(activeShowcaseIndex);
+                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                }
+            } else if (touchEndX - touchStartX > threshold) {
+                if (activeShowcaseIndex > 0) {
+                    activeShowcaseIndex--;
+                    updateActiveShowcaseInfo(activeShowcaseIndex);
+                    targetCarouselRotation = -activeShowcaseIndex * 48;
+                }
+            }
+        }, { passive: true });
+    }
     
     updateActiveShowcaseInfo(0);
 }
@@ -91,6 +186,15 @@ function updateActiveShowcaseInfo(index) {
             card.classList.add('active');
         } else {
             card.classList.remove('active');
+        }
+    });
+
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, idx) => {
+        if (idx === index) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
         }
     });
 }
@@ -253,8 +357,12 @@ function initHorizontalScroll() {
             currentTranslateX = 0;
             targetTranslateX = 0;
             
-            // Keep rotation flat in mobile or hook into touch inputs
-            updateWheelTransforms(-180);
+            // Smoothly rotate the carousel on mobile matching the active showcase item
+            currentCarouselRotation += (targetCarouselRotation - currentCarouselRotation) * 0.085;
+            if (Math.abs(targetCarouselRotation - currentCarouselRotation) < 0.05) {
+                currentCarouselRotation = targetCarouselRotation;
+            }
+            updateWheelTransforms(currentCarouselRotation);
             
             // Reset top progress bar
             const progressBar = document.getElementById('progress-bar');

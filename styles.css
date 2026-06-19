@@ -1475,6 +1475,11 @@ html {
     }
 }
 
+/* Hide mobile carousel controls on desktop */
+.carousel-nav-btn, .carousel-dots {
+    display: none;
+}
+
 /* --- Mobile View Standard Vertical Override --- */
 @media (max-width: 768px) {
     main {
@@ -1526,5 +1531,90 @@ html {
         border-top: 1px solid var(--border-glass) !important;
         padding: 60px 0 40px 0 !important;
         display: block !important;
+    }
+
+    /* Mobile Carousel Adjustments */
+    .carousel-viewport {
+        height: 320px !important;
+        width: 100% !important;
+        margin-top: 20px;
+    }
+
+    .screenshot-card {
+        width: 260px !important;
+        height: 162.5px !important;
+        margin-left: -130px !important;
+        margin-top: -81.25px !important;
+    }
+
+    .screenshot-card.portrait {
+        width: 130px !important;
+        height: 195px !important;
+        margin-left: -65px !important;
+        margin-top: -97.5px !important;
+    }
+
+    .carousel-nav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 55%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        cursor: pointer;
+        z-index: 150;
+        transition: var(--transition-smooth);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .carousel-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .carousel-nav-btn.prev {
+        left: 12px;
+    }
+
+    .carousel-nav-btn.next {
+        right: 12px;
+    }
+
+    .carousel-nav-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        z-index: 120;
+        position: relative;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        padding: 0;
+    }
+
+    .carousel-dot.active {
+        background: #ffffff;
+        transform: scale(1.2);
+        box-shadow: 0 0 8px #ffffff;
     }
 }
