@@ -203,8 +203,30 @@ function updateWheelTransforms(rotationAngle) {
     const cards = document.querySelectorAll('.screenshot-card');
     const isMobile = window.innerWidth <= 768;
     
-    // Circle math parameters (virtual rotation center below the screen)
-    const radius = isMobile ? 450 : 800; 
+    if (isMobile) {
+        // Flat carousel layout on mobile for cleaner, native feel
+        cards.forEach((card, idx) => {
+            const diff = idx - activeShowcaseIndex;
+            const cardWidth = 260; // matches mobile CSS width
+            const gap = 20;
+            const tx = diff * (cardWidth + gap);
+            
+            const scale = idx === activeShowcaseIndex ? 1.0 : 0.85;
+            const opacity = idx === activeShowcaseIndex ? 1.0 : 0.35;
+            const blur = idx === activeShowcaseIndex ? 0 : 2;
+            const visibility = Math.abs(diff) <= 1 ? 'visible' : 'hidden';
+            
+            card.style.transform = `translate3d(${tx}px, 0px, 0px) scale(${scale})`;
+            card.style.opacity = opacity;
+            card.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+            card.style.zIndex = idx === activeShowcaseIndex ? 100 : 50;
+            card.style.visibility = visibility;
+        });
+        return;
+    }
+    
+    // Circle math parameters (virtual rotation center below the screen) for desktop
+    const radius = 800; 
     const angleStep = 48; // angle spacing between cards
     
     cards.forEach((card, idx) => {
