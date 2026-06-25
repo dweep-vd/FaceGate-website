@@ -1543,93 +1543,160 @@ html {
     display: none;
 }
 
+
 /* --- Mobile View Standard Vertical Override --- */
 @media (max-width: 768px) {
+
+    /* ===== STRUCTURAL: Convert horizontal scroll to vertical stack ===== */
     main {
         height: auto !important;
     }
-    
+
     .horizontal-wrapper {
         position: relative !important;
         width: 100% !important;
         height: auto !important;
         overflow: visible !important;
     }
-    
+
     .horizontal-track {
         display: block !important;
         width: 100% !important;
         transform: none !important;
         transition: none !important;
     }
-    
-    /* Revert all sections to simple vertical blocks — do NOT use flex here */
-    .horizontal-track > section {
+
+    /* All NON-HERO sections: vertical blocks */
+    .horizontal-track > section.section {
         width: 100% !important;
         height: auto !important;
         min-height: auto !important;
-        padding: 60px 0 40px 0 !important;
+        padding: 60px 24px 40px 24px !important;
         display: block !important;
         overflow: visible !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
     }
-    
-    .horizontal-track > .features-section {
+
+    /* Hero section: rise and merge into transparent fixed navbar */
+    .horizontal-track > section.hero {
         width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: 70px !important; /* Risen to merge with the transparent fixed navbar */
+        padding-bottom: 40px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        display: block !important;
+        overflow: visible !important;
+        box-sizing: border-box !important;
     }
-    
+
     .horizontal-track > .footer {
         width: 100% !important;
         height: auto !important;
         border-left: none !important;
         border-top: 1px solid var(--border-glass) !important;
-        padding: 40px 0 !important;
+        padding: 40px 24px !important;
         display: block !important;
-    }
-
-    /* ========================================================
-       Center ALL non-hero content on mobile.
-       The hero already has its own centering rules above.
-       Key: .container has padding: 0 24px and margin: 0 auto.
-       We just need to center the content INSIDE each container.
-       ======================================================== */
-
-    /* Center text in every non-hero section */
-    .preview-section,
-    .demo-section,
-    .features-section,
-    .security-section,
-    .install-section {
         text-align: center !important;
+        box-sizing: border-box !important;
     }
 
-    /* Make containers in non-hero sections flex-column centered */
-    .preview-section > .container,
-    .demo-section > .container,
-    .features-section > .container,
-    .security-section > .container,
-    .install-section > .container {
+    /* ===== CONTAINERS: center their content ===== */
+    .hero-container,
+    .preview-section .container,
+    .demo-section .container,
+    .features-section .container,
+    .security-section .container,
+    .install-section .container {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        padding: 0 24px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 
-    /* Section headers */
-    .section-header,
+    /* Hero container needs horizontal padding because section hero padding is 0 */
+    .hero-container {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+    /* Force all direct children of these containers to take full width */
+    .hero-container > *,
+    .preview-section .container > *,
+    .demo-section .container > *,
+    .features-section .container > *,
+    .security-section .container > *,
+    .install-section .container > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ===== HERO CONTENT & TITLE CENTERING ===== */
+    .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 2.8rem) !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin-top: 10px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin-bottom: 24px !important;
+    }
+
+    .hero-ctas {
+        justify-content: center !important;
+        margin-bottom: 28px !important;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+        text-align: center !important;
+        margin-bottom: 40px !important;
+    }
+
+    .section-title,
+    .section-subtitle {
+        text-align: center !important;
+    }
+
+    /* ===== PREVIEW / SCREENSHOTS SHOWCASE ===== */
+    .screenshots-showcase-container {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
     .showcase-content {
         width: 100% !important;
         text-align: center !important;
     }
 
-    .section-title,
-    .section-subtitle,
     .showcase-title,
     .showcase-description {
         text-align: center !important;
     }
 
-    /* Mobile Carousel Adjustments */
+    /* Carousel */
     .carousel-viewport {
         height: 320px !important;
         width: 100% !important;
@@ -1715,46 +1782,20 @@ html {
         box-shadow: 0 0 8px #ffffff;
     }
 
-    /* Refined Mobile Layout Enhancements */
-    .nav {
-        background: rgba(4, 3, 6, 0.85) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-    }
-
-    .terminal-block {
-        max-width: 100% !important;
+    /* ===== DEMO ===== */
+    .demo-video-wrapper {
         width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
     }
 
-    .terminal-code {
-        font-size: 0.72rem !important;
-        padding-bottom: 4px;
+    .demo-video {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
     }
 
-    .terminal-body {
-        padding: 12px 16px !important;
-    }
-
-    .hero-image-container {
-        margin-top: 20px;
-    }
-
-    .app-icon-glowing-wrapper {
-        width: 180px !important;
-        height: 180px !important;
-        margin: 0 auto;
-    }
-
-    .hero-app-icon {
-        border-radius: 36px !important;
-    }
-
-    /* ========================================================
-       Per-component centering rules for mobile
-       ======================================================== */
-
-    /* Features */
+    /* ===== FEATURES ===== */
     .features-grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
@@ -1773,13 +1814,15 @@ html {
         max-width: 480px !important;
     }
 
-    /* Security */
+    /* ===== SECURITY ===== */
     .security-card {
         padding: 24px !important;
         text-align: center !important;
     }
 
     .security-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
         text-align: center !important;
     }
 
@@ -1803,13 +1846,7 @@ html {
         width: fit-content !important;
     }
 
-    /* Demo */
-    .demo-video-wrapper {
-        margin: 0 auto !important;
-        max-width: 100% !important;
-    }
-
-    /* Install */
+    /* ===== INSTALL ===== */
     .install-tabs-wrapper {
         width: 100% !important;
         max-width: 100% !important;
@@ -1837,14 +1874,52 @@ html {
         width: fit-content !important;
     }
 
-    /* Footer */
+    /* ===== MISC MOBILE ENHANCEMENTS & FIXED WIDTH FIXES ===== */
+    .nav {
+        background: rgba(4, 3, 6, 0.85) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+    }
+
+    .terminal-block {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .terminal-code {
+        font-size: 0.72rem !important;
+        padding-bottom: 4px;
+        min-width: 0 !important; /* CRITICAL flexbox shrinkage fix */
+        white-space: nowrap !important;
+        overflow-x: auto !important;
+    }
+
+    .terminal-body {
+        padding: 12px 16px !important;
+    }
+
+    .hero-image-container {
+        margin-top: 20px;
+    }
+
+    .app-icon-glowing-wrapper {
+        width: 180px !important;
+        height: 180px !important;
+        margin: 0 auto;
+    }
+
+    .hero-app-icon {
+        border-radius: 36px !important;
+    }
+
+    /* ===== FOOTER ===== */
     .footer-container {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
         gap: 30px !important;
-        padding: 0 24px !important;
+        padding: 0 !important;
     }
 
     .footer-left {
@@ -1861,8 +1936,9 @@ html {
     .footer-links {
         display: flex !important;
         flex-direction: row !important;
+        flex-wrap: wrap !important; /* Allow wrap for small viewports */
         justify-content: center !important;
-        gap: 40px !important;
+        gap: 24px 40px !important;
         width: 100% !important;
     }
 
@@ -1880,4 +1956,3 @@ html {
         padding-top: 20px !important;
     }
 }
-
