@@ -94,8 +94,10 @@ function initScreenshotsShowcase() {
         }
         dotsContainer.innerHTML = '';
         
+        const carouselViewport = showcaseContainer.querySelector('.carousel-viewport');
+
         // Add manual navigation arrows
-        let prevBtn = showcaseContainer.querySelector('.carousel-nav-btn.prev');
+        let prevBtn = carouselViewport.querySelector('.carousel-nav-btn.prev');
         if (!prevBtn) {
             prevBtn = document.createElement('button');
             prevBtn.className = 'carousel-nav-btn prev';
@@ -108,10 +110,10 @@ function initScreenshotsShowcase() {
                     targetCarouselRotation = -activeShowcaseIndex * 38;
                 }
             });
-            showcaseContainer.appendChild(prevBtn);
+            carouselViewport.appendChild(prevBtn);
         }
         
-        let nextBtn = showcaseContainer.querySelector('.carousel-nav-btn.next');
+        let nextBtn = carouselViewport.querySelector('.carousel-nav-btn.next');
         if (!nextBtn) {
             nextBtn = document.createElement('button');
             nextBtn.className = 'carousel-nav-btn next';
@@ -124,7 +126,7 @@ function initScreenshotsShowcase() {
                     targetCarouselRotation = -activeShowcaseIndex * 38;
                 }
             });
-            showcaseContainer.appendChild(nextBtn);
+            carouselViewport.appendChild(nextBtn);
         }
 
         screenshots.forEach((_, index) => {
@@ -401,26 +403,39 @@ function initHorizontalScroll() {
     
     // Update active nav link based on horizontal scroll position
     const updateActiveNavLink = (translateX) => {
-        const sections = document.querySelectorAll('.horizontal-track > section');
+        const isDesktop = window.innerWidth > 768;
+        const sections = isDesktop 
+            ? document.querySelectorAll('.horizontal-track > section')
+            : document.querySelectorAll('main > section, .horizontal-track > section');
+            
         const navLinks = document.querySelectorAll('.nav-link');
-        
         let activeSectionId = '';
         
         sections.forEach(section => {
-            const sectionLeft = section.offsetLeft;
-            const sectionWidth = section.offsetWidth;
+            const id = section.getAttribute('id');
+            if (!id) return;
             
-            // If the section is currently active/visible in the main viewport area
-            if (translateX >= sectionLeft - window.innerWidth / 3 && 
-                translateX < sectionLeft + sectionWidth - window.innerWidth / 3) {
-                activeSectionId = section.getAttribute('id');
+            if (isDesktop) {
+                const sectionLeft = section.offsetLeft;
+                const sectionWidth = section.offsetWidth;
+                if (translateX >= sectionLeft - window.innerWidth / 3 && 
+                    translateX < sectionLeft + sectionWidth - window.innerWidth / 3) {
+                    activeSectionId = id;
+                }
+            } else {
+                const rect = section.getBoundingClientRect();
+                const headerOffset = 80;
+                // Check if section is currently occupying the main view area
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= headerOffset + 100) {
+                    activeSectionId = id;
+                }
             }
         });
         
         navLinks.forEach(link => {
             link.classList.remove('active');
             const href = link.getAttribute('href');
-            if (href === `#${activeSectionId}`) {
+            if (activeSectionId && href === `#${activeSectionId}`) {
                 link.classList.add('active');
             }
         });
@@ -452,8 +467,28 @@ function initHorizontalScroll() {
                             const maxTranslate = track.scrollWidth - window.innerWidth;
                             const scrollHeight = main.scrollHeight - window.innerHeight;
                             
+                            let targetProgress = 0;
+                            const previewSection = document.getElementById('preview');
+                            if (previewSection && maxTranslate > 0) {
+                                const previewLeft = previewSection.offsetLeft;
+                                const pinProgressStart = (previewLeft - 100) / maxTranslate;
+                                const pinProgressEnd = pinProgressStart + 0.15;
+                                const remainingTranslate = maxTranslate - previewLeft;
+                                
+                                if (sectionLeft < previewLeft) {
+                                    targetProgress = (sectionLeft / previewLeft) * pinProgressStart;
+                                } else if (sectionLeft === previewLeft) {
+                                    targetProgress = pinProgressStart;
+                                } else {
+                                    const postProgress = (sectionLeft - previewLeft) / remainingTranslate;
+                                    targetProgress = (postProgress * (1 - pinProgressEnd)) + pinProgressEnd;
+                                }
+                            } else {
+                                targetProgress = sectionLeft / maxTranslate;
+                            }
+                            
                             // Map horizontal offset back to vertical scroll target
-                            const targetScrollY = (sectionLeft / maxTranslate) * scrollHeight;
+                            const targetScrollY = targetProgress * scrollHeight;
                             
                             window.scrollTo({
                                 top: targetScrollY,
@@ -509,7 +544,8 @@ function initMobileNav() {
     
     if (!toggle || !header) return;
     
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         header.classList.toggle('nav-active');
     });
     
@@ -517,6 +553,13 @@ function initMobileNav() {
         link.addEventListener('click', () => {
             header.classList.remove('nav-active');
         });
+    });
+
+    document.addEventListener('click', (e) => {
+        const isClickInside = header.contains(e.target);
+        if (!isClickInside && header.classList.contains('nav-active')) {
+            header.classList.remove('nav-active');
+        }
     });
 }
 
