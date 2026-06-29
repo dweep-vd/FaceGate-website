@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="FaceGate - Open-source, local-first app-level locking utility with FaceUnlock and Touch ID for macOS.">
+    <meta name="description" content="FaceGate URL Deprecation Notice. FaceGate has moved to a new website.">
     <meta name="theme-color" content="#0a0813">
     <title>FaceGate — Application-Level Face Recognition Lock for macOS</title>
     <!-- Google Fonts -->
@@ -14,398 +14,55 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Top Progress Bar -->
-    <div class="scroll-progress-container">
-        <div class="scroll-progress-bar" id="progress-bar"></div>
-    </div>
-
-    <!-- Starfield Background Canvas -->
-    <canvas id="starfield"></canvas>
-    
-    <!-- Mobile Flying Logo Transition -->
-    <img id="flying-logo" src="assets/logos/square_icon.png" alt="FaceGate Logo" style="display: none; position: fixed; z-index: 999; pointer-events: none; border-radius: 20%;">
-
     <!-- Header Navigation -->
     <header class="header">
         <div class="header-container container">
-            <a href="#" class="logo">
+            <a href="https://dweep-desai.github.io/FaceGate-web/" class="logo">
                 <img src="assets/logos/square_icon.png" alt="FaceGate Logo" class="logo-img">
                 <span class="logo-text">FaceGate</span>
             </a>
-            <nav class="nav">
-                <a href="#preview" class="nav-link">Preview</a>
-                <a href="#demo" class="nav-link">Demo</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#security" class="nav-link">Security</a>
-                <a href="#install" class="nav-link">Install</a>
-                <a href="https://github.com/sponsors/dweep-desai" target="_blank" rel="noopener noreferrer" class="nav-link sponsor-link">
-                    <span>Sponsor</span>
-                    <svg class="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor" stroke="none"></svg>
-                </a>
-                <a href="https://github.com/dweep-desai/FaceGate-Mac" target="_blank" rel="noopener noreferrer" class="nav-link github-link">
-                    <span>GitHub</span>
-                    <svg class="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                </a>
-            </nav>
-            <a href="#install" class="btn btn-primary btn-nav">Get FaceGate</a>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
         </div>
     </header>
 
     <main>
-        <div class="horizontal-wrapper">
-            <div class="horizontal-track">
-                <!-- Hero Section -->
-                <section class="hero">
+        <!-- Hero Section -->
+        <section class="hero">
             <div class="container hero-container">
-                <div class="hero-content scroll-reveal">
-
+                <div class="hero-content">
                     <h1 class="hero-title">World's first <span class="gradient-text">Face Authentication</span> enabled MacOS App-locker</h1>
                     <p class="hero-subtitle">Unlock your Mac apps using Face, TouchID or password. Completely local and encrypted — your data never leaves your Mac. 100% free &amp; open-source.</p>
                     
-                    <div class="hero-ctas">
-                        <a href="#install" class="btn btn-primary">
-                             <span>Get Started</span>
+                    <!-- Deprecation Notice Panel -->
+                    <div class="deprecation-panel">
+                        <div class="deprecation-header">
+                            <span class="badge">
+                                <span class="badge-pulse"></span>
+                                URL Deprecated
+                            </span>
+                        </div>
+                        <p class="deprecation-desc">This URL has been deprecated due to operational reasons. Please visit our new website at <a href="https://dweep-desai.github.io/FaceGate-web/" class="text-link">https://dweep-desai.github.io/FaceGate-web/</a> to download the app, view releases, and read the documentation.</p>
+                        <a href="https://dweep-desai.github.io/FaceGate-web/" class="btn btn-primary">
+                            <span>Visit New Website</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </a>
-                        <a href="https://github.com/dweep-desai/FaceGate-Mac" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                            <svg class="icon-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            <span>Star on GitHub</span>
-                        </a>
-                        <a href="https://github.com/sponsors/dweep-desai" target="_blank" rel="noopener noreferrer" class="btn btn-secondary sponsor-hero-btn">
-                            <svg viewBox="0 0 24 24" fill="currentColor" style="color: #ea4aaa;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            <span>Sponsor</span>
-                        </a>
-                    </div>
-
-                    <!-- Terminal Code Snippet -->
-                    <div class="terminal-block">
-                        <div class="terminal-header">
-                            <div class="terminal-dots">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <span class="terminal-title">Terminal</span>
-                        </div>
-                        <div class="terminal-body">
-                            <span class="terminal-prompt">$</span>
-                            <code class="terminal-code">curl -fsSL https://raw.githubusercontent.com/dweep-desai/FaceGate-Mac/main/install.sh | bash</code>
-                            <button class="btn-copy" aria-label="Copy Install Command">
-                                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                <svg class="icon-check hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            </button>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="hero-image-container scroll-reveal delay-1">
+                <div class="hero-image-container">
                     <div class="app-icon-glowing-wrapper">
                         <img src="assets/logos/square_icon.png" alt="FaceGate App Icon" class="hero-app-icon">
-                        <div class="glow-layer"></div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Preview Section -->
-        <section id="preview" class="section preview-section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2 class="section-title">Designed natively for macOS</h2>
-                    <p class="section-subtitle">Runs silently in the menu bar and guards your selected applications on launch.</p>
-                </div>
-                
-                <div class="screenshots-showcase-container">
-                    <div class="showcase-content">
-                        <h3 class="showcase-title" id="showcase-active-title"></h3>
-                        <p class="showcase-description" id="showcase-active-desc"></p>
-                    </div>
-                    <div class="carousel-viewport">
-                        <div class="carousel-wheel" id="carousel-wheel">
-                            <!-- Screenshots will be dynamically generated by JS -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Demo Section -->
-        <section id="demo" class="section demo-section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2 class="section-title">Product Demo</h2>
-                    <p class="section-subtitle">Watch FaceGate in action: seamless authentication, live face monitoring, and robust security settings.</p>
-                </div>
-                
-                <div class="demo-video-wrapper scroll-reveal delay-1">
-                    <video class="demo-video" autoplay loop muted playsinline controlslist="nodownload nofullscreen noremoteplayback" disablePictureInPicture oncontextmenu="return false;">
-                        <source src="assets/short_demo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="section features-section">
-            <div class="container">
-                <div class="section-header scroll-reveal">
-                    <h2 class="section-title">Robust Features, Local Security</h2>
-                    <p class="section-subtitle">A convenience layer against casual physical access, tailored for your Mac.</p>
-                </div>
-
-                <div class="features-grid">
-                    <!-- Feature 1 -->
-                    <div class="feature-card scroll-reveal">
-                        <div class="feature-icon-wrapper purple">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        </div>
-                        <h3 class="feature-card-title">Real-Time Locking</h3>
-                        <p class="feature-card-desc">Intercepts application launches in real-time, blocking unauthorized access immediately until verification succeeds.</p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="feature-card scroll-reveal">
-                        <div class="feature-icon-wrapper blue">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                        </div>
-                        <h3 class="feature-card-title">On-Device Recognition</h3>
-                        <p class="feature-card-desc">Runs a software-based face embedding pipeline directly on your Apple Silicon Neural Engine or Intel Core processor. 100% offline.</p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="feature-card scroll-reveal">
-                        <div class="feature-icon-wrapper pink">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg>
-                        </div>
-                        <h3 class="feature-card-title">Liveness Verification</h3>
-                        <p class="feature-card-desc">Defeats photo and video spoofing attempts by requiring head-pose challenges (left turn, right turn, or tilt) before unlock.</p>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="feature-card scroll-reveal">
-                        <div class="feature-icon-wrapper green">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                        <h3 class="feature-card-title">Biometric Fallback</h3>
-                        <p class="feature-card-desc">Integrates natively with macOS Touch ID. Fall back to Touch ID or your system-encrypted password keychain instantly.</p>
-                    </div>
-
-                    <!-- Feature 5 -->
-                    <div class="feature-card scroll-reveal">
-                        <div class="feature-icon-wrapper yellow">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        </div>
-                        <h3 class="feature-card-title">Per-App Session Timers</h3>
-                        <p class="feature-card-desc">Customize unlock durations per application. Keep unlocked indefinitely while active, or automatically lock immediately on exit.</p>
-                    </div>
-
-                    <!-- Feature 6 -->
-                    <div class="feature-card scroll-reveal">
-                        <div class="feature-icon-wrapper indigo">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h3 class="feature-card-title">Tamper Protection</h3>
-                        <p class="feature-card-desc">Restricts unauthorized app quitting or uninstallation. Requires administrator authentication to tamper with the installation bundle.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security & Privacy Spotlight -->
-        <section id="security" class="section security-section">
-            <div class="container">
-                <div class="security-card scroll-reveal">
-                    <div class="security-grid">
-                        <div class="security-info">
-                            <span class="security-badge">Privacy First</span>
-                            <h2 class="security-title">Zero Telemetry. <br>100% Local.</h2>
-                            <p class="security-desc">We believe that biometric security should never compromise your privacy. FaceGate operates entirely offline on your device. Absolutely no data, telemetry, or face embeddings leave your Mac.</p>
-                            
-                            <ul class="security-list">
-                                <li>
-                                    <svg class="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                    <span>Face embeddings are stored locally, encrypted with <strong>AES-256-GCM</strong>.</span>
-                                </li>
-                                <li>
-                                    <svg class="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                    <span>Decryption keys and salted SHA-256 password digests are held in the secure <strong>macOS Keychain</strong>.</span>
-                                </li>
-                                <li>
-                                    <svg class="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                    <span>No web servers, no analytic trackers, no external APIs. <strong>100% Open Source.</strong></span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="security-graphic">
-                            <div class="shield-container">
-                                <div class="shield-ring ring-1"></div>
-                                <div class="shield-ring ring-2"></div>
-                                <div class="shield-ring ring-3"></div>
-                                <div class="shield-icon-box">
-                                    <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Install Section -->
-        <section id="install" class="section install-section">
-            <div class="container small-container">
-                <div class="section-header scroll-reveal">
-                    <h2 class="section-title">Install FaceGate</h2>
-                    <p class="section-subtitle">Select your preferred installation method to set up FaceGate on macOS 14.0+.</p>
-                </div>
-
-                <div style="text-align:center; margin-bottom:2rem;" class="scroll-reveal">
-                    <a href="https://youtu.be/ZBuUl4wp9y0?si=JsenxBQgYtuoPlyb" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem;">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                        <span>Watch the video</span>
-                    </a>
-                </div>
-                <div class="install-tabs-wrapper scroll-reveal delay-1">
-                    <div class="tab-headers">
-                        <button class="tab-btn active" data-tab="script">Automated Script</button>
-                        <button class="tab-btn" data-tab="dmg">Manual DMG</button>
-                        <button class="tab-btn" data-tab="brew">Homebrew</button>
-                    </div>
-
-                    <div class="tab-contents">
-                        <!-- Tab: Script -->
-                        <div class="tab-content active" id="tab-script">
-                            <p class="tab-description">The simplest and recommended way to install. Download, verify, and initialize the system automatically with one command:</p>
-                            <div class="terminal-block">
-                                <div class="terminal-header">
-                                    <div class="terminal-dots">
-                                        <span class="dot red"></span>
-                                        <span class="dot yellow"></span>
-                                        <span class="dot green"></span>
-                                    </div>
-                                    <span class="terminal-title">Terminal</span>
-                                </div>
-                                <div class="terminal-body">
-                                    <span class="terminal-prompt">$</span>
-                                    <code class="terminal-code">curl -fsSL https://raw.githubusercontent.com/dweep-desai/FaceGate-Mac/main/install.sh | bash</code>
-                                    <button class="btn-copy-tab" aria-label="Copy Command">
-                                        <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                        <svg class="icon-check hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab: Manual -->
-                        <div class="tab-content" id="tab-dmg">
-                            <p class="tab-description">Download the application installer manually. A Gatekeeper override is required since the app is not signed with paid Developer certificates.</p>
-                            
-                            <div class="manual-steps">
-                                <a href="https://github.com/dweep-desai/FaceGate-Mac/releases" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                                    <span>Download Latest DMG Release</span>
-                                </a>
-
-                                <div class="steps-list">
-                                    <div class="step-item">
-                                        <div class="step-number">1</div>
-                                        <div class="step-text">Mount the volume and drag <strong>FaceGate.app</strong> to your <code>/Applications</code> folder.</div>
-                                    </div>
-                                    <div class="step-item">
-                                        <div class="step-number">2</div>
-                                        <div class="step-text">Open Terminal and run: <code>xattr -cr /Applications/FaceGate.app</code> (to remove the Gatekeeper quarantine flag).</div>
-                                    </div>
-                                    <div class="step-item">
-                                        <div class="step-number">3</div>
-                                        <div class="step-text">You can now launch the app normally!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab: Brew -->
-                        <div class="tab-content" id="tab-brew">
-                            <p class="tab-description">Install via Homebrew cask. Since the <code>--no-quarantine</code> flag is deprecated in newer versions of Homebrew, you will need to manually remove the quarantine flag after installing.</p>
-                            <div class="terminal-block">
-                                <div class="terminal-header">
-                                    <div class="terminal-dots">
-                                        <span class="dot red"></span>
-                                        <span class="dot yellow"></span>
-                                        <span class="dot green"></span>
-                                    </div>
-                                    <span class="terminal-title">Terminal</span>
-                                </div>
-                                <div class="terminal-body">
-                                    <span class="terminal-prompt">$</span>
-                                    <code class="terminal-code">brew install --cask dweep-desai/tap/facegate</code>
-                                    <button class="btn-copy-tab" aria-label="Copy Command">
-                                        <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                        <svg class="icon-check hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <p class="tab-post-install-note" style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
-                                After the Homebrew installation finishes, run this command in your Terminal:
-                            </p>
-                            <div class="terminal-block" style="margin-top: 10px;">
-                                <div class="terminal-header" style="display: none;"></div>
-                                <div class="terminal-body">
-                                    <span class="terminal-prompt">$</span>
-                                    <code class="terminal-code">xattr -cr /Applications/FaceGate.app</code>
-                                    <button class="btn-copy-tab" aria-label="Copy Command">
-                                        <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                        <svg class="icon-check hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container footer-container">
-                <div class="footer-left">
-                    <a href="#" class="logo">
-                        <img src="assets/logos/square_icon.png" alt="FaceGate Logo" class="logo-img">
-                        <span class="logo-text">FaceGate</span>
-                    </a>
-                    <p class="footer-tagline">Open-source macOS utility for secure local application locking.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>Project</h4>
-                        <a href="https://github.com/dweep-desai/FaceGate-Mac" target="_blank" rel="noopener noreferrer">Source Code</a>
-                        <a href="https://github.com/dweep-desai/FaceGate-Mac/issues" target="_blank" rel="noopener noreferrer">Issues</a>
-                        <a href="https://github.com/dweep-desai/FaceGate-Mac/releases" target="_blank" rel="noopener noreferrer">Releases</a>
-                        <a href="https://github.com/sponsors/dweep-desai" target="_blank" rel="noopener noreferrer">Sponsor Project</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>License</h4>
-                        <a href="https://github.com/dweep-desai/FaceGate-Mac/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container footer-bottom">
-                <p class="copyright">&copy; 2026 FaceGate. Created by <a href="https://github.com/dweep-desai" target="_blank" rel="noopener noreferrer">Dweep Desai</a>.</p>
-                <div class="disclaimer">Not affiliated with Apple Inc.</div>
-            </div>
-        </footer>
-            </div>
-        </div>
     </main>
 
-    <!-- Main JavaScript Logic -->
-    <script src="app.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p class="copyright">&copy; 2026 FaceGate. Created by <a href="https://github.com/dweep-desai" target="_blank" rel="noopener noreferrer">Dweep Desai</a>.</p>
+            <div class="disclaimer">Not affiliated with Apple Inc.</div>
+        </div>
+    </footer>
 </body>
 </html>
